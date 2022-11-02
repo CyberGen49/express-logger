@@ -1,6 +1,8 @@
 # cyber-express-logger
 A simple and colourful request logger for Express
 
+![The logger in action](showcase.png)
+
 ## Installation
 Just use npm:
 ```
