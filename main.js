@@ -24,7 +24,10 @@ const logger = (opts = loggerOptions) => {
     /** @type {express.RequestHandler} */
     const handler = (req, res, next) => {
         res.on('finish', () => {
-            const ip = opts.getIP(req) || req.socket.remoteAddress;
+            const ip = opts.getIP(req)
+                || req.headers['cf-connecting-ip']
+                || req.headers['x-forwarded-for']
+                || req.socket.remoteAddress;
             let codeC = 'yellow';
             switch (res.statusCode.toString().substring(0, 1)) {
                 case '2': codeC = 'green'; break;
